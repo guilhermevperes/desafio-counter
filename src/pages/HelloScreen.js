@@ -1,5 +1,7 @@
 import React, { useContext } from 'react'
 
+import PlusIcon from '../components/icons/PlusIcon'
+
 import { HelloView } from '../components/view/helloView/helloViewStyled'
 import { Text } from '../components/text/textStyled'
 
@@ -15,6 +17,7 @@ export default function HelloScreen () {
       <Text color={themeState.primaryColor}>
         {helloState.helloMessage}
       </Text>
+      <PlusIcon />
     </HelloView>
   )
 }
