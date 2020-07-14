@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 
-import { GenericViewContainer } from './genericViewStyled'
+import { GenericViewContainer, SafeAreaViewStyled } from './genericViewStyled'
 
 import Header from '../header/Header'
 
@@ -11,8 +11,10 @@ export default function GenericView () {
   const { state: themeState } = theme
 
   return (
-    <GenericViewContainer backgroundColor={themeState.secondaryColor}>
-      <Header />
-    </GenericViewContainer>
+    <SafeAreaViewStyled>
+      <GenericViewContainer backgroundColor={themeState.secondaryColor}>
+        <Header />
+      </GenericViewContainer>
+    </SafeAreaViewStyled>
   )
 }
