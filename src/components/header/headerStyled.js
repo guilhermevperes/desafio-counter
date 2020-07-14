@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 
 export const HeaderStyled = styled.View`
-    height: 100px;
+    height: 80px;
     background-color: ${props => props.backgroundColor};
     position: absolute;
     top: 0px;

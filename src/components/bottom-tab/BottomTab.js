@@ -45,7 +45,7 @@ export default function BottomTab () {
         options={{
           showLabel: false,
           tabBarIcon: () => (
-            <ListIcon />
+            <ListIcon color={themeState.tertiaryColor} />
           )
         }}
       />
@@ -62,7 +62,7 @@ export default function BottomTab () {
         options={{
           showLabel: false,
           tabBarIcon: () => (
-            <ConfigIcon />
+            <ConfigIcon color={themeState.secondaryColor} />
           )
         }}
       />

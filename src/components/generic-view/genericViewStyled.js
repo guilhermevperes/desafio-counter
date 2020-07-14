@@ -9,3 +9,13 @@ export const GenericViewContainer = styled.View`
     background-color: ${props => props.backgroundColor};
     width: 100%;
 `
+
+export const Content = styled.View`
+    flex: 1;
+    width: 100%;
+    justify-content: center;
+    margin-top: 80px;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+`

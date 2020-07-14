@@ -4,11 +4,11 @@ import Icon from './Icon'
 
 import { Context } from '../../context/index'
 
-export default function ConfigIcon () {
+export default function ConfigIcon ({ color }) {
   const { tab } = useContext(Context)
   const { state: tabState } = tab
 
   return (
-    <Icon icon='plus-square' size={30} color={tabState.configIconColor} />
+    <Icon icon='plus-square' size={30} color={tabState.configIconColor || color} />
   )
 }

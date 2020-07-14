@@ -3,6 +3,7 @@ import React, { useReducer, createContext } from 'react'
 import { helloReducer, initialValue as helloState } from './reducers/helloRuducer'
 import { themeReducer, initialValue as themeState } from './reducers/themeReducer'
 import { tabReducer, initialValue as tabState } from './reducers/tabReducer'
+import { counterReducer, initialValue as counterState } from './reducers/counterReducer'
 
 export const { Context, Provider } = createDataContext()
 
@@ -13,7 +14,8 @@ function createDataContext () {
     const reducersCombined = [
       { reducerName: 'hello', reducer: helloReducer, initialValue: helloState },
       { reducerName: 'theme', reducer: themeReducer, initialValue: themeState },
-      { reducerName: 'tab', reducer: tabReducer, initialValue: tabState }
+      { reducerName: 'tab', reducer: tabReducer, initialValue: tabState },
+      { reducerName: 'counter', reducer: counterReducer, initialValue: counterState }
     ]
 
     const reducers = reducersCombined.map(({ reducerName, reducer, initialValue }) => {
