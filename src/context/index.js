@@ -2,6 +2,7 @@
 import React, { useReducer, createContext } from 'react'
 import { helloReducer, initialValue as helloState } from './reducers/helloRuducer'
 import { themeReducer, initialValue as themeState } from './reducers/themeReducer'
+import { tabReducer, initialValue as tabState } from './reducers/tabReducer'
 
 export const { Context, Provider } = createDataContext()
 
@@ -11,7 +12,8 @@ function createDataContext () {
   const Provider = ({ children }) => {
     const reducersCombined = [
       { reducerName: 'hello', reducer: helloReducer, initialValue: helloState },
-      { reducerName: 'theme', reducer: themeReducer, initialValue: themeState }
+      { reducerName: 'theme', reducer: themeReducer, initialValue: themeState },
+      { reducerName: 'tab', reducer: tabReducer, initialValue: tabState }
     ]
 
     const reducers = reducersCombined.map(({ reducerName, reducer, initialValue }) => {

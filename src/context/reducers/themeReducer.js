@@ -1,7 +1,8 @@
 
 const initialValue = {
   primaryColor: '#162F57',
-  secondaryColor: '#DCDCDC'
+  secondaryColor: '#FFFFFF',
+  tertiaryColor: '#05D3D6'
 }
 
 function themeReducer (state, action) {

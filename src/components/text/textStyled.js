@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 
-export const Text = styled.Text`
-    font-size: 30px;
-    color: ${props => props.color};
-    font-family: 'Montserrat-Bold'
+export const TextStyled = styled.Text`
+    color: ${props => props.textColor};
+    font-size: ${props => props.size};
+    font-family: ${props => props.fontFamily};
 `
