@@ -8,9 +8,9 @@ import { CounterListContainer } from './counterViewStyled'
 
 import { Context } from '../../context/index'
 
-import { CONTEXT } from '../../utils/Enum'
+import { CONTEXT, NAVIGATION_SCREEN } from '../../utils/Enum'
 
-export default function CounterList () {
+export default function CounterList ({ navigation }) {
   const { counter, theme } = useContext(Context)
   const { state: counterState, dispatch: counterDispatch } = counter
   const { state: themeState } = theme
@@ -34,6 +34,7 @@ export default function CounterList () {
         onPress={() => selectCounter(item.index)}
         onMinusIconPress={() => decrement(item.index)}
         onPlusIconPress={() => increment(item.index)}
+        onEditIconPress={() => goToConfigPage(item.index)}
       />
     )
   }
@@ -50,7 +51,13 @@ export default function CounterList () {
     }
   }
 
+  function goToConfigPage (index) {
+    console.log(index)
+    navigation.navigate(NAVIGATION_SCREEN.COUNTER_CONFIG_SCREEN)
+  }
+
   function selectCounter (index) {
+    counterDispatch({ type: CONTEXT.COUNTER.SET_SELECTED_COUNTER, payload: { index } })
     setCounterSelected(index)
   }
 

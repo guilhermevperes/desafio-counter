@@ -9,7 +9,7 @@ import ConfigIcon from '../icons/ConfigIcon'
 
 import { Context } from '../../context/index'
 
-import { CONTEXT, HEADER } from '../../utils/Enum'
+import { CONTEXT, HEADER, NAVIGATION_SCREEN } from '../../utils/Enum'
 
 const Tab = createBottomTabNavigator()
 
@@ -33,7 +33,7 @@ export default function BottomTab () {
       }}
     >
       <Tab.Screen
-        name='Home'
+        name={NAVIGATION_SCREEN.COUNTER_LIST_SCREEN}
         component={CounterListScreen}
         listeners={{
           tabPress: e => {
@@ -50,7 +50,7 @@ export default function BottomTab () {
         }}
       />
       <Tab.Screen
-        name='Settings'
+        name={NAVIGATION_SCREEN.COUNTER_CONFIG_SCREEN}
         component={CounterConfigScreen}
         listeners={{
           tabPress: e => {

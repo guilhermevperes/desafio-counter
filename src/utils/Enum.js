@@ -1,9 +1,5 @@
 // LANGUAGE ENUM
 
-export const HELLO = {
-  HELLO_MESSAGE: 'Projeto Criado!'
-}
-
 export const HEADER = {
   TITLE: {
     COUNTER_LIST: 'Contadores',
@@ -11,10 +7,20 @@ export const HEADER = {
   }
 }
 
+export const COUNTER_CONFIG_SCREEN = {
+  SELECTED_COUNTER: 'Contador selecionado:',
+  COUNTER_NAME: 'Nome: ',
+  CURRENT_VALUE: 'Contagem atual: ',
+  INCREMENT: 'Incrementar',
+  DECREMENT: 'Decrementar'
+}
+
 // PROJECT CONFIG ENUM
 
 export const NAVIGATION_SCREEN = {
-  BOTTOM_TAB: 'BottomTab'
+  BOTTOM_TAB: 'BottomTab',
+  COUNTER_CONFIG_SCREEN: 'CounterConfigScreen',
+  COUNTER_LIST_SCREEN: 'CounterListScreen'
 }
 
 export const CONTEXT = {
@@ -25,7 +31,8 @@ export const CONTEXT = {
   },
   COUNTER: {
     INCREMENT: 'INCREMENT',
-    DECREMENT: 'DECREMENT'
+    DECREMENT: 'DECREMENT',
+    SET_SELECTED_COUNTER: 'SET_SELECTED_COUNTER'
   }
 }
 

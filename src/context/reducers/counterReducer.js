@@ -9,7 +9,8 @@ const initialValue = {
     { index: 4, name: 'Contador 5', currentValue: 0, selected: false },
     { index: 5, name: 'Contador 6', currentValue: 0, selected: false },
     { index: 6, name: 'Contador 7', currentValue: 0, selected: false }
-  ]
+  ],
+  selectedCounter: 0
 }
 
 function counterReducer (state, action) {
@@ -24,6 +25,8 @@ function counterReducer (state, action) {
       index = action.payload.index
       state.counters[index].currentValue--
       return { ...state }
+    case CONTEXT.COUNTER.SET_SELECTED_COUNTER:
+      return { ...state, selectedCounter: action.payload.index }
     default:
       throw new Error()
   }
