@@ -58,6 +58,7 @@ export default function EditCounterView ({ navigation, addCounter }) {
     const currentValueInt = parseInt(currentValue)
     const maxValueInt = parseInt(maxValue)
     const minValueInt = parseInt(minValue)
+    let nameExists = false
     if (maxValueInt < minValueInt) {
       Alert.alert(COUNTERS_SCREEN.OPS, COUNTERS_SCREEN.ALERT_MAX_MIN)
       return
@@ -70,6 +71,17 @@ export default function EditCounterView ({ navigation, addCounter }) {
 
     if (minValue === '' || maxValue === '') {
       Alert.alert(COUNTERS_SCREEN.OPS, COUNTERS_SCREEN.ALERT_FILL_MAX_MIN)
+      return
+    }
+
+    counterState.counters.forEach(counter => {
+      if (counter.name === counterName && counter.index !== counterState.selectedCounter) {
+        nameExists = true
+      }
+    })
+
+    if (nameExists) {
+      Alert.alert(COUNTERS_SCREEN.OPS, COUNTERS_SCREEN.NAME_EXISTS)
       return
     }
 

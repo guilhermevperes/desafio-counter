@@ -28,7 +28,8 @@ export const COUNTERS_SCREEN = {
   ALERT_MAX_MIN: 'O valor máximo é menor que o valor mínimo.',
   ALERT_FILL_NAME: 'Preencha o nome!',
   ALERT_FILL_MAX_MIN: 'Preencha os valores de máximo e mínimo!',
-  VOID_MESSAGE: 'Você não possui contadores... Crie um abaixo!'
+  VOID_MESSAGE: 'Você não possui contadores... Crie um abaixo!',
+  NAME_EXISTS: 'O nome escolhido já foi usado'
 }
 
 // PROJECT CONFIG ENUM

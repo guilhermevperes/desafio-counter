@@ -73,7 +73,7 @@ export default function CounterList ({ navigation }) {
         style={{ width: '100%' }}
         data={counterState.counters}
         renderItem={renderItem}
-        keyExtractor={item => item.name}
+        keyExtractor={item => item.index.toString()}
       />
 
       {/* {teste()} */}

@@ -29,7 +29,7 @@ export default function CounterListScreen ({ navigation }) {
         <VoidStateMessage />
         <CounterAddAuxView>
           <Text text={COUNTERS_SCREEN.NEW_COUNTER} textColor={themeState.primaryColor} size='20px' fontFamily={FONTS.SEMI_BOLD} />
-          <AddCounterView />
+          <AddCounterView navigation={navigation} />
         </CounterAddAuxView>
       </CounterConfigView>
     )

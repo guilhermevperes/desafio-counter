@@ -8,12 +8,12 @@ import Input from '../input/Input'
 
 import { Context } from '../../context/index'
 
-import { CONTEXT, COUNTERS_SCREEN, HEADER } from '../../utils/Enum'
+import { CONTEXT, COUNTERS_SCREEN, HEADER, NAVIGATION_SCREEN } from '../../utils/Enum'
 
 export default function AddCounterView ({ navigation, addCounter }) {
   const { theme, counter, tab } = useContext(Context)
   const { state: themeState } = theme
-  const { dispatch: counterDispatch } = counter
+  const { state: counterState, dispatch: counterDispatch } = counter
   const { dispatch: tabDispatch } = tab
 
   const [counterName, setCounterName] = useState('')
@@ -23,6 +23,7 @@ export default function AddCounterView ({ navigation, addCounter }) {
   function save () {
     const maxValueInt = parseInt(maxValue)
     const minValueInt = parseInt(minValue)
+    let nameExists = false
 
     if (maxValueInt < minValueInt) {
       Alert.alert(COUNTERS_SCREEN.OPS, COUNTERS_SCREEN.ALERT_MAX_MIN)
@@ -39,6 +40,17 @@ export default function AddCounterView ({ navigation, addCounter }) {
       return
     }
 
+    counterState.counters.forEach(counter => {
+      if (counter.name === counterName) {
+        nameExists = true
+      }
+    })
+
+    if (nameExists) {
+      Alert.alert(COUNTERS_SCREEN.OPS, COUNTERS_SCREEN.NAME_EXISTS)
+      return
+    }
+
     counterDispatch({
       type: CONTEXT.COUNTER.ADD_COUNTER,
       payload: {
@@ -49,6 +61,7 @@ export default function AddCounterView ({ navigation, addCounter }) {
     })
 
     setTab()
+    navigation.navigate(NAVIGATION_SCREEN.COUNTER_LIST_SCREEN)
   }
 
   function setTab () {
@@ -63,7 +76,7 @@ export default function AddCounterView ({ navigation, addCounter }) {
       <Input name={COUNTERS_SCREEN.MAX_VALUE} value={maxValue} setValue={setMaxValue} keyboardType='numeric' maxLength={3} />
       <Input name={COUNTERS_SCREEN.MIN_VALUE} value={minValue} setValue={setMinValue} keyboardType='numeric' maxLength={3} />
       <EditAuxButtonView>
-        <Button name={COUNTERS_SCREEN.SAVE} onPress={save} />
+        <Button name={COUNTERS_SCREEN.ADD_COUNTER} onPress={save} />
       </EditAuxButtonView>
     </EditCounterViewContainer>
   )
