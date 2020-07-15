@@ -9,10 +9,18 @@ export const HEADER = {
 
 export const COUNTER_CONFIG_SCREEN = {
   SELECTED_COUNTER: 'Contador selecionado:',
+  COUNTERS: 'Contadores:',
   COUNTER_NAME: 'Nome: ',
   CURRENT_VALUE: 'Contagem atual: ',
   INCREMENT: 'Incrementar',
-  DECREMENT: 'Decrementar'
+  DECREMENT: 'Decrementar',
+  MAX_VALUE: 'Valor Máximo: ',
+  MIN_VALUE: 'Valor Mínimo: ',
+  ADD_COUNTER: 'Adicionar',
+  REMOVE_COUNTER: 'Remover',
+  EDIT: 'Editar',
+  SAVE: 'Salvar',
+  NEW_COUNTER: 'Novo contador:'
 }
 
 // PROJECT CONFIG ENUM
@@ -32,7 +40,11 @@ export const CONTEXT = {
   COUNTER: {
     INCREMENT: 'INCREMENT',
     DECREMENT: 'DECREMENT',
-    SET_SELECTED_COUNTER: 'SET_SELECTED_COUNTER'
+    SET_SELECTED_COUNTER: 'SET_SELECTED_COUNTER',
+    SET_MAX_VALUE: 'SET_MAX_VALUE',
+    SET_MIN_VALUE: 'SET_MIN_VALUE',
+    UPDATE_COUNTER: 'UPDATE_COUNTER',
+    REMOVE_COUNTER: 'REMOVE_COUNTER'
   }
 }
 

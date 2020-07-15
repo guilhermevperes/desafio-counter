@@ -13,7 +13,7 @@ export default function Button ({ name, onPress }) {
   const { state: themeState } = theme
 
   return (
-    <ButtonContainer activeOpacity={0.7} onPress={onPress} backgroundColor={themeState.secondaryColor}>
+    <ButtonContainer activeOpacity={0.5} onPress={onPress} backgroundColor={themeState.secondaryColor}>
       <Text text={name} size='16px' fontFamily={FONTS.BOLD} textColor={themeState.primaryColor} />
     </ButtonContainer>
   )

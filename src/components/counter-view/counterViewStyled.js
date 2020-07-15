@@ -51,34 +51,21 @@ export const ContentViewFooter = styled.View`
     justify-content: space-around;
 `
 
+export const ActionButtonsView = styled.View`
+    flex-direction: row;
+    flex: 0.45;
+    justify-content: space-between;
+`
+
+export const InfoAuxView = styled.View`
+`
+
 export const TouchableOpacityStyled = styled.TouchableOpacity`
 
 `
-
-export const EditCounterViewContainer = styled.View`
-    width: 100%;
-    border: 2px dashed ${props => props.borderColor};
-    height: 200px;
-    border-radius: 10px;
-    padding: 20px;
-    justify-content: space-around;
-`
-
-export const EditAuxView = styled.View`
+export const TextAuxView = styled.View`
     width: 100%;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-`
-
-export const EditAuxFooterView = styled.View`
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-around;
-`
-
-export const EditAuxButtonView = styled.View`
-    flex: 0.45;
-    align-items: center
-    justify-content: center;
 `

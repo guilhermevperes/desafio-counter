@@ -4,7 +4,16 @@ export const SafeAreaViewStyled = styled.SafeAreaView`
     flex: 1;
 `
 
+export const ScrollViewStyled = styled.ScrollView`
+`
+
 export const GenericViewContainer = styled.View`
+    flex: 1;
+    background-color: ${props => props.backgroundColor};
+    width: 100%;
+`
+
+export const ScrollGenericViewContainer = styled.ScrollView`
     flex: 1;
     background-color: ${props => props.backgroundColor};
     width: 100%;

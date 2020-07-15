@@ -6,7 +6,10 @@ import {
   ContentViewHeader,
   ContentViewBody,
   ContentViewFooter,
-  TouchableOpacityStyled
+  TouchableOpacityStyled,
+  ActionButtonsView,
+  TextAuxView,
+  InfoAuxView
 } from './counterViewStyled'
 
 import Text from '../text/Text'
@@ -18,14 +21,26 @@ import { FONTS } from '../../utils/Enum'
 
 import { Context } from '../../context/index'
 
-export default function CounterView ({ backgroundColor, name, currentValue, borderColor, selected, onPlusIconPress, onMinusIconPress, onEditIconPress, ...props }) {
+export default function CounterView ({
+  backgroundColor,
+  name,
+  currentValue,
+  borderColor,
+  selected,
+  onPlusIconPress,
+  onMinusIconPress,
+  onEditIconPress,
+  maxValue,
+  minValue,
+  ...props
+}) {
   const { theme } = useContext(Context)
   const { state: themeState } = theme
 
   function renderEditiIcon () {
     return (
       <TouchableOpacityStyled onPress={onEditIconPress}>
-        <EditIcon />
+        <EditIcon color={themeState.primaryColor} counterView />
       </TouchableOpacityStyled>
     )
   }
@@ -42,12 +57,24 @@ export default function CounterView ({ backgroundColor, name, currentValue, bord
         <Text text={currentValue} size='28px' fontFamily={FONTS.BOLD} textColor={themeState.quaternaryColor} />
       </ContentViewBody>
       <ContentViewFooter>
-        <TouchableOpacityStyled onPress={onPlusIconPress}>
-          <PlusIcon />
-        </TouchableOpacityStyled>
-        <TouchableOpacityStyled onPress={onMinusIconPress}>
-          <MinusIcon />
-        </TouchableOpacityStyled>
+        <InfoAuxView>
+          <TextAuxView>
+            <Text text='Máximo: ' size='18px' fontFamily={FONTS.SEMI_BOLD} textColor={themeState.primaryColor} />
+            <Text text={maxValue} size='18px' fontFamily={FONTS.SEMI_BOLD} textColor={themeState.quaternaryColor} />
+          </TextAuxView>
+          <TextAuxView>
+            <Text text='Mínimo: ' size='18px' fontFamily={FONTS.SEMI_BOLD} textColor={themeState.primaryColor} />
+            <Text text={minValue} size='18px' fontFamily={FONTS.SEMI_BOLD} textColor={themeState.quaternaryColor} />
+          </TextAuxView>
+        </InfoAuxView>
+        <ActionButtonsView>
+          <TouchableOpacityStyled onPress={onPlusIconPress}>
+            <PlusIcon />
+          </TouchableOpacityStyled>
+          <TouchableOpacityStyled onPress={onMinusIconPress}>
+            <MinusIcon />
+          </TouchableOpacityStyled>
+        </ActionButtonsView>
       </ContentViewFooter>
     </CounterViewContainer>
   )

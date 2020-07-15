@@ -8,12 +8,13 @@ import { CounterListContainer } from './counterViewStyled'
 
 import { Context } from '../../context/index'
 
-import { CONTEXT, NAVIGATION_SCREEN } from '../../utils/Enum'
+import { CONTEXT, NAVIGATION_SCREEN, HEADER } from '../../utils/Enum'
 
 export default function CounterList ({ navigation }) {
-  const { counter, theme } = useContext(Context)
+  const { counter, theme, tab } = useContext(Context)
   const { state: counterState, dispatch: counterDispatch } = counter
   const { state: themeState } = theme
+  const { dispatch: tabDispatch } = tab
 
   const [counterSelected, setCounterSelected] = useState()
 
@@ -35,6 +36,8 @@ export default function CounterList ({ navigation }) {
         onMinusIconPress={() => decrement(item.index)}
         onPlusIconPress={() => increment(item.index)}
         onEditIconPress={() => goToConfigPage(item.index)}
+        maxValue={item.maxValue}
+        minValue={item.minValue}
       />
     )
   }
@@ -53,7 +56,11 @@ export default function CounterList ({ navigation }) {
 
   function goToConfigPage (index) {
     console.log(index)
-    navigation.navigate(NAVIGATION_SCREEN.COUNTER_CONFIG_SCREEN)
+    tabDispatch({ type: CONTEXT.TAB.SET_LIST_ICON_COLOR, payload: { color: themeState.septenaryColor } })
+    tabDispatch({ type: CONTEXT.TAB.SET_CONFIG_ICON_COLOR, payload: { color: themeState.tertiaryColor } })
+    tabDispatch({ type: CONTEXT.TAB.SET_HEADER_TITLE, payload: { title: HEADER.TITLE.COUNTER_CONFIG } })
+    // counterDispatch({ type: CONTEXT.COUNTER.SET_SELECTED_COUNTER, payload: { index } })
+    navigation.navigate(NAVIGATION_SCREEN.COUNTER_CONFIG_SCREEN, { selectedCounter: index })
   }
 
   function selectCounter (index) {
