@@ -70,10 +70,10 @@ function counterReducer (state, action) {
       counter.minValue = action.payload.minValue
       counter.maxValue = action.payload.maxValue
       counter.name = action.payload.name
+      counter.currentValue = action.payload.currentValue
       counter.selected = state.counters.length === 0
-      counter.currentValue = 0
       state.counters.push(counter)
-      return { ...state, selectedCounter: index }
+      return { ...state, selectedCounter: counter.index }
     case CONTEXT.COUNTER.RESET_COUNTER:
       index = action.payload.index
       state.counters[index].currentValue = 0

@@ -16,8 +16,7 @@ export default function CounterList ({ navigation }) {
   const { state: themeState } = theme
   const { dispatch: tabDispatch } = tab
 
-  const [counterSelected, setCounterSelected] = useState()
-
+  const [counterSelected, setCounterSelected] = useState(counterState.selectedCounter)
   useEffect(() => {
     const counterSelected = counterState.counters.find(counter => counter.selected)
     setCounterSelected(counterSelected.index)
@@ -27,11 +26,11 @@ export default function CounterList ({ navigation }) {
     return (
       <CounterView
         key={item.index}
-        backgroundColor={item.index === counterSelected ? themeState.secondaryColor : themeState.septenaryColor}
+        backgroundColor={item.index === counterState.selectedCounter ? themeState.secondaryColor : themeState.septenaryColor}
         name={item.name}
         borderColor={themeState.primaryColor}
         currentValue={item.currentValue}
-        selected={item.index === counterSelected}
+        selected={item.index === counterState.selectedCounter}
         onPress={() => selectCounter(item.index)}
         onMinusIconPress={() => decrement(item.index)}
         onPlusIconPress={() => increment(item.index)}

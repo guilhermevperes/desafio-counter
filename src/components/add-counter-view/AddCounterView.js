@@ -56,6 +56,7 @@ export default function AddCounterView ({ navigation, addCounter }) {
       payload: {
         minValue: minValueInt,
         maxValue: maxValueInt,
+        currentValue: minValueInt,
         name: counterName
       }
     })

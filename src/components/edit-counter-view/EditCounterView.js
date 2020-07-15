@@ -89,7 +89,7 @@ export default function EditCounterView ({ navigation, addCounter }) {
       type: CONTEXT.COUNTER.UPDATE_COUNTER,
       payload: {
         name: counterName,
-        currentValue: currentValueInt,
+        currentValue: currentValueInt < minValueInt ? minValueInt : currentValueInt,
         maxValue: maxValueInt,
         minValue: minValueInt,
         index: counterState.selectedCounter
