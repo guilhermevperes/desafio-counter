@@ -10,14 +10,15 @@ import Button from '../components/button/Button'
 
 import {
   CounterConfigView,
-  CounterEditView,
+  CounterEditAuxView,
   CounterActionView,
   ButtonAuxView,
-  ButtonsHeaderView
+  ButtonsHeaderView,
+  CounterAddAuxView
 } from '../components/view/counter-config-view/counterConfigViewStyled'
 
 import { Context } from '../context/index'
-import { COUNTER_CONFIG_SCREEN, FONTS, CONTEXT, HEADER, NAVIGATION_SCREEN } from '../utils/Enum'
+import { COUNTERS_SCREEN, FONTS, CONTEXT, HEADER, NAVIGATION_SCREEN } from '../utils/Enum'
 
 export default function CounterConfigScreen ({ navigation }) {
   const { theme, counter, tab } = useContext(Context)
@@ -29,31 +30,33 @@ export default function CounterConfigScreen ({ navigation }) {
 
   function renderEditView () {
     return (
-      <CounterEditView>
-        <Text text={COUNTER_CONFIG_SCREEN.SELECTED_COUNTER} textColor={themeState.primaryColor} size='20px' fontFamily={FONTS.SEMI_BOLD} />
+      <CounterEditAuxView>
+        <Text text={COUNTERS_SCREEN.SELECTED_COUNTER} textColor={themeState.primaryColor} size='20px' fontFamily={FONTS.SEMI_BOLD} />
         <EditConfigView navigation={navigation} addCounter={addCounter} />
-      </CounterEditView>
+      </CounterEditAuxView>
     )
   }
 
   function renderAddView () {
     return (
-      <CounterEditView>
-        <Text text={COUNTER_CONFIG_SCREEN.NEW_COUNTER} textColor={themeState.primaryColor} size='20px' fontFamily={FONTS.SEMI_BOLD} />
+      <CounterAddAuxView>
+        <Text text={COUNTERS_SCREEN.NEW_COUNTER} textColor={themeState.primaryColor} size='20px' fontFamily={FONTS.SEMI_BOLD} />
         <AddCounterView />
-      </CounterEditView>
+      </CounterAddAuxView>
     )
   }
 
   function removeCounter () {
-    counterDispatch({ type: CONTEXT.COUNTER.REMOVE_COUNTER, payload: { index: counterState.selectedCounter } })
+    if (counterState.counters.length > 0) {
+      counterDispatch({ type: CONTEXT.COUNTER.REMOVE_COUNTER, payload: { index: counterState.selectedCounter } })
 
-    Alert.alert('Contador Removido', '', [
-      {
-        text: 'Ok',
-        onPress: () => goBack()
-      }
-    ])
+      Alert.alert(COUNTERS_SCREEN.COUNTER_REMOVED, '', [
+        {
+          text: COUNTERS_SCREEN.OK,
+          onPress: () => goBack()
+        }
+      ])
+    }
   }
 
   function goBack () {
@@ -71,17 +74,17 @@ export default function CounterConfigScreen ({ navigation }) {
     <GenericContainerView scroll>
       <CounterConfigView>
         <CounterActionView>
-          <Text text={COUNTER_CONFIG_SCREEN.COUNTERS} textColor={themeState.primaryColor} size='20px' fontFamily={FONTS.SEMI_BOLD} />
+          <Text text={COUNTERS_SCREEN.COUNTERS} textColor={themeState.primaryColor} size='20px' fontFamily={FONTS.SEMI_BOLD} />
           <ButtonsHeaderView>
             <ButtonAuxView>
-              <Button name={addCounter ? COUNTER_CONFIG_SCREEN.EDIT : COUNTER_CONFIG_SCREEN.ADD_COUNTER} onPress={() => setAddCounter(!addCounter)} />
+              <Button name={counterState.counters.length === 0 ? COUNTERS_SCREEN.ADD_COUNTER : addCounter ? COUNTERS_SCREEN.EDIT : COUNTERS_SCREEN.ADD_COUNTER} onPress={() => setAddCounter(!addCounter)} />
             </ButtonAuxView>
             <ButtonAuxView>
-              <Button name={COUNTER_CONFIG_SCREEN.REMOVE_COUNTER} onPress={removeCounter} />
+              <Button name={COUNTERS_SCREEN.REMOVE_COUNTER} onPress={removeCounter} />
             </ButtonAuxView>
           </ButtonsHeaderView>
         </CounterActionView>
-        {addCounter ? renderAddView() : renderEditView()}
+        {counterState.counters.length === 0 ? renderAddView() : addCounter ? renderAddView() : renderEditView()}
       </CounterConfigView>
     </GenericContainerView>
   )

@@ -56,7 +56,7 @@ export default function BottomTab ({ navigation }) {
         }}
       />
       <Tab.Screen
-        name={NAVIGATION_SCREEN.COUNTER_CONFIG_SCREEN}
+        name={NAVIGATION_SCREEN.COUNTERS_SCREEN}
         component={ConfigScreen}
         listeners={{
           tabPress: e => {

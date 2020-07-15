@@ -10,6 +10,8 @@ target 'desafioCounter' do
 
 
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'desafioCounterTests' do
     inherit! :complete
     # Pods for testing

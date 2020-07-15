@@ -15,7 +15,12 @@ export const CounterActionView = styled.View`
     margin-bottom: 20px;
 `
 
-export const CounterEditView = styled.View`
+export const CounterEditAuxView = styled.View`
+    width: 100%;
+    align-items: flex-start;
+    justify-content: center;
+`
+export const CounterAddAuxView = styled(CounterEditAuxView)`
     width: 100%;
     align-items: flex-start;
     justify-content: center;

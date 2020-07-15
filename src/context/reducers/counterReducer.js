@@ -2,8 +2,8 @@ import { CONTEXT } from '../../utils/Enum'
 
 const initialValue = {
   counters: [
-    { index: 0, name: 'Contador 1', currentValue: 0, maxValue: 10, minValue: -3, selected: true },
-    { index: 1, name: 'Contador 2', currentValue: 0, maxValue: 10, minValue: -3, selected: false }
+    // { index: 0, name: 'Contador 1', currentValue: 0, maxValue: 10, minValue: -3, selected: true },
+    // { index: 1, name: 'Contador 2', currentValue: 0, maxValue: 10, minValue: -3, selected: false }
   ],
   selectedCounter: 0
 }
@@ -14,6 +14,7 @@ function counterReducer (state, action) {
   let maxValue = null
   let currentValue = null
   let counters = null
+  const counter = {}
   switch (action.type) {
     case CONTEXT.COUNTER.INCREMENT:
       index = action.payload.index
@@ -63,7 +64,21 @@ function counterReducer (state, action) {
         state.counters = []
         state.selectedCounter = null
       }
-      console.log('passou por aqui')
+      return { ...state }
+    case CONTEXT.COUNTER.ADD_COUNTER:
+      counter.index = state.counters.length
+      counter.minValue = action.payload.minValue
+      counter.maxValue = action.payload.maxValue
+      counter.name = action.payload.name
+      counter.selected = state.counters.length === 0
+      counter.currentValue = 0
+      state.counters.push(counter)
+      return { ...state, selectedCounter: index }
+    case CONTEXT.COUNTER.RESET_COUNTER:
+      index = action.payload.index
+      state.counters[index].currentValue = 0
+      state.counters[index].maxValue = 0
+      state.counters[index].minValue = 0
       return { ...state }
     default:
       throw new Error()

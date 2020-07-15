@@ -9,7 +9,7 @@ import Input from '../input/Input'
 
 import { Context } from '../../context/index'
 
-import { FONTS, CONTEXT, COUNTER_CONFIG_SCREEN, NAVIGATION_SCREEN, HEADER } from '../../utils/Enum'
+import { FONTS, CONTEXT, COUNTERS_SCREEN, HEADER } from '../../utils/Enum'
 
 export default function EditCounterView ({ navigation, addCounter }) {
   const { theme, counter, tab } = useContext(Context)
@@ -24,7 +24,6 @@ export default function EditCounterView ({ navigation, addCounter }) {
 
   useEffect(() => {
     if (counterState.selectedCounter !== null) {
-      console.log('counterState.selectedCounter :>> ', counterState.selectedCounter)
       setCounterName(counterState.counters[counterState.selectedCounter].name)
       setCurrentValue(counterState.counters[counterState.selectedCounter].currentValue.toString())
       setMaxValue(counterState.counters[counterState.selectedCounter].maxValue.toString())
@@ -44,13 +43,13 @@ export default function EditCounterView ({ navigation, addCounter }) {
   }
 
   function increment () {
-    if (currentValue < maxValue) {
+    if (parseInt(currentValue) < parseInt(maxValue)) {
       setCurrentValue(parseInt(currentValue) + 1)
     }
   }
 
   function decrement () {
-    if (currentValue > minValue) {
+    if (parseInt(currentValue) > parseInt(minValue)) {
       setCurrentValue(parseInt(currentValue) - 1)
     }
   }
@@ -60,12 +59,17 @@ export default function EditCounterView ({ navigation, addCounter }) {
     const maxValueInt = parseInt(maxValue)
     const minValueInt = parseInt(minValue)
     if (maxValueInt < minValueInt) {
-      Alert.alert('Ops', 'O valor máximo é menor que o valor mínimo.')
+      Alert.alert(COUNTERS_SCREEN.OPS, COUNTERS_SCREEN.ALERT_MAX_MIN)
       return
     }
 
     if (!counterName) {
-      Alert.alert('Ops', 'Preencha o nome!')
+      Alert.alert(COUNTERS_SCREEN.OPS, COUNTERS_SCREEN.ALERT_FILL_NAME)
+      return
+    }
+
+    if (minValue === '' || maxValue === '') {
+      Alert.alert(COUNTERS_SCREEN.OPS, COUNTERS_SCREEN.ALERT_FILL_MAX_MIN)
       return
     }
 
@@ -83,6 +87,13 @@ export default function EditCounterView ({ navigation, addCounter }) {
     navigation.goBack()
   }
 
+  function reset () {
+    setCurrentValue('0')
+    setMaxValue('0')
+    setMinValue('0')
+    counterDispatch({ type: CONTEXT.COUNTER.RESET_COUNTER, payload: { index: counterState.selectedCounter } })
+  }
+
   function setTab () {
     tabDispatch({ type: CONTEXT.TAB.SET_LIST_ICON_COLOR, payload: { color: themeState.tertiaryColor } })
     tabDispatch({ type: CONTEXT.TAB.SET_CONFIG_ICON_COLOR, payload: { color: themeState.septenaryColor } })
@@ -91,23 +102,26 @@ export default function EditCounterView ({ navigation, addCounter }) {
 
   return (
     <EditCounterViewContainer borderColor={themeState.secondaryColor}>
-      <Input name={COUNTER_CONFIG_SCREEN.COUNTER_NAME} value={counterName} setValue={setCounterName} maxLength={15} />
+      <Input name={COUNTERS_SCREEN.COUNTER_NAME} value={counterName} setValue={setCounterName} maxLength={15} />
       <TextAuxView>
-        <Text text={COUNTER_CONFIG_SCREEN.CURRENT_VALUE} size='20px' textColor={themeState.primaryColor} fontFamily={FONTS.SEMI_BOLD} />
+        <Text text={COUNTERS_SCREEN.CURRENT_VALUE} size='20px' textColor={themeState.primaryColor} fontFamily={FONTS.SEMI_BOLD} />
         <Text text={currentValue} size='20px' textColor={themeState.secondaryColor} fontFamily={FONTS.SEMI_BOLD} />
       </TextAuxView>
-      <Input name={COUNTER_CONFIG_SCREEN.MAX_VALUE} value={maxValue} setValue={setMaxValue} keyboardType='numeric' maxLength={3} />
-      <Input name={COUNTER_CONFIG_SCREEN.MIN_VALUE} value={minValue} setValue={setMinValue} keyboardType='numeric' maxLength={3} />
+      <Input name={COUNTERS_SCREEN.MAX_VALUE} value={maxValue} setValue={setMaxValue} keyboardType='numeric' maxLength={3} />
+      <Input name={COUNTERS_SCREEN.MIN_VALUE} value={minValue} setValue={setMinValue} keyboardType='numeric' maxLength={3} />
       <EditAuxFooterView>
         <EditAuxButtonView>
-          <Button name={COUNTER_CONFIG_SCREEN.INCREMENT} onPress={increment} />
+          <Button name={COUNTERS_SCREEN.INCREMENT} onPress={increment} />
         </EditAuxButtonView>
         <EditAuxButtonView>
-          <Button name={COUNTER_CONFIG_SCREEN.DECREMENT} onPress={decrement} />
+          <Button name={COUNTERS_SCREEN.DECREMENT} onPress={decrement} />
         </EditAuxButtonView>
       </EditAuxFooterView>
       <EditAuxButtonView>
-        <Button name={COUNTER_CONFIG_SCREEN.SAVE} onPress={save} />
+        <Button name={COUNTERS_SCREEN.RESET} onPress={reset} />
+      </EditAuxButtonView>
+      <EditAuxButtonView>
+        <Button name={COUNTERS_SCREEN.SAVE} onPress={save} />
       </EditAuxButtonView>
     </EditCounterViewContainer>
   )

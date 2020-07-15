@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 export const EditCounterViewContainer = styled.View`
     width: 100%;
     border: 2px dashed ${props => props.borderColor};
-    height: 300px;
+    height: 350px;
     border-radius: 10px;
     padding: 20px;
     justify-content: space-around;
@@ -20,6 +20,7 @@ export const EditAuxFooterView = styled.View`
     width: 100%;
     flex-direction: row;
     justify-content: space-around;
+    margin-bottom: 4px;
 `
 
 export const EditAuxButtonView = styled.View`
@@ -27,4 +28,5 @@ export const EditAuxButtonView = styled.View`
     align-items: center;
     justify-content: center;
     height: 40px;
+    margin-bottom: 4px;
 `

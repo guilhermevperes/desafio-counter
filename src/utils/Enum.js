@@ -7,7 +7,7 @@ export const HEADER = {
   }
 }
 
-export const COUNTER_CONFIG_SCREEN = {
+export const COUNTERS_SCREEN = {
   SELECTED_COUNTER: 'Contador selecionado:',
   COUNTERS: 'Contadores:',
   COUNTER_NAME: 'Nome: ',
@@ -20,14 +20,22 @@ export const COUNTER_CONFIG_SCREEN = {
   REMOVE_COUNTER: 'Remover',
   EDIT: 'Editar',
   SAVE: 'Salvar',
-  NEW_COUNTER: 'Novo contador:'
+  NEW_COUNTER: 'Novo contador:',
+  RESET: 'Resetar',
+  COUNTER_REMOVED: 'Contador Removido',
+  OK: 'Ok',
+  OPS: 'Ops',
+  ALERT_MAX_MIN: 'O valor máximo é menor que o valor mínimo.',
+  ALERT_FILL_NAME: 'Preencha o nome!',
+  ALERT_FILL_MAX_MIN: 'Preencha os valores de máximo e mínimo!',
+  VOID_MESSAGE: 'Você não possui contadores... Crie um abaixo!'
 }
 
 // PROJECT CONFIG ENUM
 
 export const NAVIGATION_SCREEN = {
   BOTTOM_TAB: 'BottomTab',
-  COUNTER_CONFIG_SCREEN: 'CounterConfigScreen',
+  COUNTERS_SCREEN: 'CounterConfigScreen',
   COUNTER_LIST_SCREEN: 'CounterListScreen'
 }
 
@@ -44,7 +52,9 @@ export const CONTEXT = {
     SET_MAX_VALUE: 'SET_MAX_VALUE',
     SET_MIN_VALUE: 'SET_MIN_VALUE',
     UPDATE_COUNTER: 'UPDATE_COUNTER',
-    REMOVE_COUNTER: 'REMOVE_COUNTER'
+    REMOVE_COUNTER: 'REMOVE_COUNTER',
+    ADD_COUNTER: 'ADD_COUNTER',
+    RESET_COUNTER: 'RESET_COUNTER'
   }
 }
 
